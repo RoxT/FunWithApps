@@ -3,7 +3,7 @@ package com.roxanne.funwithapps.funwithapps;
 import java.io.Serializable;
 
 /**
- * A character with name and initiative
+ * A character with name and initiative, and count if it a monster
  * Created by Roxanne on 16/04/14.
  */
 public class Character implements Serializable {

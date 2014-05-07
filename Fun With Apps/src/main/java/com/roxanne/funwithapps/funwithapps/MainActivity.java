@@ -4,6 +4,7 @@ package com.roxanne.funwithapps.funwithapps;
 import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -13,15 +14,21 @@ import java.util.ArrayList;
 
 public class MainActivity extends ActionBarActivity {
 
+    private static final String LOGTAG = "MainActivity.java";
     private ArrayList<String> values;
     public static ArrayList<Character> characters;
     private Serializer file;
+    ArrayAdapter myAdapter;
+    int selected;
+    View v;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        selected = 0;
 
         file = new Serializer(this);
 
@@ -46,9 +53,17 @@ public class MainActivity extends ActionBarActivity {
             }
 
         final ListView listview = (ListView) findViewById(R.id.listview);
-        ArrayAdapter myAdapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, values);
+        myAdapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, values);
 
         listview.setAdapter(myAdapter);
+        Log.i(LOGTAG, "myAdapter count = " + myAdapter.getCount());
+        if (myAdapter.getCount() > 0) {
+            v = myAdapter.getView(selected, v, listview);
+            v.setBackgroundColor(getResources().getColor(android.R.color.holo_green_dark));
+            v.setSelected(true);
+            Log.i(LOGTAG, "selected = " + selected);
+
+        }
 
     }
 
@@ -62,6 +77,23 @@ public class MainActivity extends ActionBarActivity {
     public void clearOnClick(View view){
         Intent intent  = new Intent(this, CancelDialog.class);
         startActivity(intent);
+    }
+
+    /** Called when the user clicks the Next button */
+    public void nextOnClick(View view){
+        final ListView listview = (ListView) findViewById(R.id.listview);
+        v.setBackgroundColor(getResources().getColor(android.R.color.background_dark));
+        v.setSelected(false);
+        if (selected < myAdapter.getCount() - 1) {
+            v = myAdapter.getView(++selected, v, listview);
+        } else {
+            selected = 0;
+            v = myAdapter.getView(selected, v, listview);
+        }
+        v.setBackgroundColor(getResources().getColor(android.R.color.holo_green_dark));
+        v.setSelected(true);
+        Log.i(LOGTAG, "selected = " + selected);
+
     }
 
 
