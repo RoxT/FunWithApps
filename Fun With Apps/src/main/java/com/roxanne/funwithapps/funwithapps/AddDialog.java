@@ -99,9 +99,9 @@ public class AddDialog extends ActionBarActivity implements ActionBar.TabListene
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
         if (id == R.id.done_btn) {
-            if (mViewPager.getCurrentItem() == 1) {
+            if (mViewPager.getCurrentItem() == 0) {
                 PlayerFragment.onClickSavePlayer();
-            } else if (mViewPager.getCurrentItem() == 2) {
+            } else if (mViewPager.getCurrentItem() == 1) {
                 MonsterFragment.onClickSaveMonster();
             }
 
@@ -142,9 +142,9 @@ public class AddDialog extends ActionBarActivity implements ActionBar.TabListene
             // getItem is called to instantiate the fragment for the given page.
             // Return a PlaceholderFragment (defined as a static inner class below).
             if (position == 0) {
-                return PlayerFragment.newInstance(position + 1);
+                return PlayerFragment.newInstance(position);
             } else {
-                return MonsterFragment.newInstance(position + 1);
+                return MonsterFragment.newInstance(position);
             }
         }
 
