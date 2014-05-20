@@ -16,9 +16,9 @@ public class MainActivity extends ActionBarActivity {
 
     private static final String LOGTAG = "MainActivity.java";
     private ArrayList<String> values;
-    public static ArrayList<Character> characters;
+    public static Character[] characters;
     private Serializer file;
-    ArrayAdapter myAdapter;
+    CharacterAdapter myAdapter;
     int selected;
     View v;
 
@@ -28,42 +28,16 @@ public class MainActivity extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        selected = 0;
-
         file = new Serializer(this);
+        characters = file.getCharacters().toArray(new Character[10]);
 
-        if (characters == null) {
-            characters = new ArrayList<Character>();
+        if (characters.length < 1) {
+            characters = new Character[] {new Character("Detta the Default", 3)};
         }
-        characters = file.getCharacters();
-
-
-//        if (characters.size() < 1){
-//            Character detta = new Character("Detta the Default", 3);
-//            for (int i = 0; i < 3 ; i++)
-//                file.addCharacter(new Character("Player " + i, (int) (Math.random() * 10)));
-//            file.addCharacter(detta);
-//            characters = file.getCharacters();
-//        }
-
-        values = new ArrayList<String>();
-        for (Character c : characters){
-             for (int i = 1; i <= c.getCount(); i++)
-                 values.add(c.toString());
-            }
-
-        final ListView listview = (ListView) findViewById(R.id.listview);
-        myAdapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, values);
+        final ListView listview = (ListView) findViewById(R.id.list);
+        myAdapter = new CharacterAdapter(this, characters);
 
         listview.setAdapter(myAdapter);
-        Log.i(LOGTAG, "myAdapter count = " + myAdapter.getCount());
-        if (myAdapter.getCount() > 0) {
-            v = myAdapter.getView(selected, v, listview);
-            v.setBackgroundColor(getResources().getColor(android.R.color.holo_green_dark));
-            v.setSelected(true);
-            Log.i(LOGTAG, "selected = " + selected);
-
-        }
 
     }
 
@@ -81,18 +55,6 @@ public class MainActivity extends ActionBarActivity {
 
     /** Called when the user clicks the Next button */
     public void nextOnClick(View view){
-        final ListView listview = (ListView) findViewById(R.id.listview);
-        v.setBackgroundColor(getResources().getColor(android.R.color.background_dark));
-        v.setSelected(false);
-        if (selected < myAdapter.getCount() - 1) {
-            v = myAdapter.getView(++selected, v, listview);
-        } else {
-            selected = 0;
-            v = myAdapter.getView(selected, v, listview);
-        }
-        v.setBackgroundColor(getResources().getColor(android.R.color.holo_green_dark));
-        v.setSelected(true);
-        Log.i(LOGTAG, "selected = " + selected);
 
     }
 

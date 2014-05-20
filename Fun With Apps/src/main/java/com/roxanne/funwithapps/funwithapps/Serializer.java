@@ -73,6 +73,8 @@ public class Serializer {
      */
     public ArrayList<Character> getCharacters() {
 
+        // TODO optimize this so it loads one time and just return the existing characters instead of leading every time
+
         characters = new ArrayList<Character>();
         ObjectInputStream inputStream = null;
 
@@ -100,6 +102,7 @@ public class Serializer {
                     e.printStackTrace();
                 }
         }
+
         return characters;
     }
 
