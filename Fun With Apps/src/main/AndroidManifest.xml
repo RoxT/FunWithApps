@@ -17,14 +17,6 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.roxanne.funwithapps.funwithapps.AddPlayer"
-            android:label="@string/title_activity_add_dialog"
-            android:parentActivityName="com.roxanne.funwithapps.funwithapps.MainActivity" >
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="MainActivity" />
-        </activity>
-        <activity
             android:name="com.roxanne.funwithapps.funwithapps.CancelDialog"
             android:label="@string/title_activity_cancel_dialog"
             android:parentActivityName="com.roxanne.funwithapps.funwithapps.MainActivity" >

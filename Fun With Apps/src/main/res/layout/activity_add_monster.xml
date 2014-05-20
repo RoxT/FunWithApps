@@ -25,7 +25,7 @@
         android:inputType="textPersonName"
         android:hint="Name"
         android:ems="10"
-        android:id="@+id/etName"
+        android:id="@+id/etNameM"
         android:layout_alignBottom="@+id/textView"
         android:layout_centerHorizontal="true" />
 
@@ -47,8 +47,8 @@
         android:text="Init Bonus:"
         android:id="@+id/textView3"
         android:layout_alignTop="@+id/textView2"
-        android:layout_alignRight="@+id/etName"
-        android:layout_alignEnd="@+id/etName" />
+        android:layout_alignRight="@+id/etNameM"
+        android:layout_alignEnd="@+id/etNameM" />
 
     <NumberPicker
         android:layout_width="wrap_content"
@@ -60,7 +60,7 @@
     <NumberPicker
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/npInit"
+        android:id="@+id/npInitM"
         android:layout_below="@+id/textView3"
         android:layout_alignRight="@+id/textView3"
         android:layout_alignEnd="@+id/textView3" />

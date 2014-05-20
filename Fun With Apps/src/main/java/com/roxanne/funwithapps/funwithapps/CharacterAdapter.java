@@ -1,6 +1,7 @@
 package com.roxanne.funwithapps.funwithapps;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,6 +18,7 @@ public class CharacterAdapter extends ArrayAdapter<Character> {
 
     private final Context context;
     private final Character[] values;
+    private final static String LOGTAG = "CharacterAdapter.java";
 
     public CharacterAdapter(Context c, Character[] values){
         super(c, R.layout.battle_list_item, values);
@@ -34,20 +36,32 @@ public class CharacterAdapter extends ArrayAdapter<Character> {
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
 
-       View rowView = convertView;
-       // resuse rows
-        if (rowView == null){
-            LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            rowView = inflater.inflate(R.layout.battle_list_item, parent, false);
-            // configure view holder
-            ViewHolder viewHolder = new ViewHolder();
-            viewHolder.name = (TextView) rowView.findViewById(R.id.tVName);
-            viewHolder.init = (TextView) rowView.findViewById(R.id.tVInit);
-            rowView.setTag(viewHolder);
+
+        View v = convertView;
+        if (v == null) {
+            LayoutInflater vi;
+            vi = LayoutInflater.from(getContext());
+            v = vi.inflate(R.layout.battle_list_item, parent, false);
+
         }
 
-        //fill data
-        ViewHolder viewHolder = rowView.getTag();
+        Character p = getItem(position);
+
+        if (p != null) {
+            Log.i(LOGTAG, "View on characterr: " + p.toString());
+            TextView textOne = (TextView) v.findViewById(R.id.tVName);
+            TextView textTwo = (TextView) v.findViewById(R.id.tVInit);
+
+            if (textOne != null) {
+                textOne.setText(values[position].getName());
+            }
+
+            if (textTwo != null) {
+
+                textTwo.setText(values[position].getInit() + "");
+            }
+        }
+        return v;
 
     }
 }

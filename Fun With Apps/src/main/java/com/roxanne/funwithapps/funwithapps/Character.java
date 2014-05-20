@@ -14,16 +14,16 @@ public class Character implements Serializable {
     private boolean player;
 
 
-    public Character(String name, int init){
-        this.name = name;
-        this.init = init;
+    public Character(String n, int i){
+        this.name = n;
+        this.init = i;
         count = 1;
         player = true;
     }
 
-    public Character(String name, int init, int count){
-        this.name = name;
-        this.init = init;
+    public Character(String n, int i, int count){
+        this.name = n;
+        this.init = i;
         this.count = count;
         player = false;
     }

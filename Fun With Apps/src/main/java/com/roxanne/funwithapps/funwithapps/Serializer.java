@@ -37,6 +37,7 @@ public class Serializer {
     public void addCharacter(Character character){
         if (!(characters == null)){
             characters.add(character);
+            Log.i(LOGTAG, "New character: " + character.toString());
             saveCharacters();
         }
     }

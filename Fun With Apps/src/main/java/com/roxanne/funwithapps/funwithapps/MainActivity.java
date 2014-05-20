@@ -16,7 +16,7 @@ public class MainActivity extends ActionBarActivity {
 
     private static final String LOGTAG = "MainActivity.java";
     private ArrayList<String> values;
-    public static Character[] characters;
+    public static ArrayList<Character> characters;
     private Serializer file;
     CharacterAdapter myAdapter;
     int selected;
@@ -29,13 +29,13 @@ public class MainActivity extends ActionBarActivity {
         setContentView(R.layout.activity_main);
 
         file = new Serializer(this);
-        characters = file.getCharacters().toArray(new Character[10]);
+        characters = file.getCharacters();
 
-        if (characters.length < 1) {
-            characters = new Character[] {new Character("Detta the Default", 3)};
+        if (characters.size() < 1) {
+            characters.add(new Character("Detta the Default", 5));
         }
         final ListView listview = (ListView) findViewById(R.id.list);
-        myAdapter = new CharacterAdapter(this, characters);
+        myAdapter = new CharacterAdapter(this, characters.toArray(new Character[characters.size()]));
 
         listview.setAdapter(myAdapter);
 

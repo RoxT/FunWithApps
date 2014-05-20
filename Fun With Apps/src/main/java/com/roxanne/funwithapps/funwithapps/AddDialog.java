@@ -37,9 +37,7 @@ public class AddDialog extends ActionBarActivity implements ActionBar.TabListene
      */
     ViewPager mViewPager;
 
-    static NumberPicker npInit;
-    static NumberPicker npCount;
-    static EditText editText;
+
 
     static Serializer file;
 
@@ -177,7 +175,8 @@ public class AddDialog extends ActionBarActivity implements ActionBar.TabListene
          */
         private static final String ARG_SECTION_NUMBER = "section_number";
 
-
+        static EditText editTextP;
+        static NumberPicker npInitP;
 
         /**
          * Returns a new instance of this fragment for the given section
@@ -206,18 +205,18 @@ public class AddDialog extends ActionBarActivity implements ActionBar.TabListene
             if (file == null)
                 file = new Serializer(rootView.getContext());
 
-            editText = (EditText) rootView.findViewById(R.id.etNameP);
+            editTextP = (EditText) rootView.findViewById(R.id.etNameP);
 
-            npInit = (NumberPicker) rootView.findViewById(R.id.npInitP);
-            npInit.setMaxValue(9);
-            npInit.setMinValue(0);
+            npInitP = (NumberPicker) rootView.findViewById(R.id.npInitP);
+            npInitP.setMaxValue(9);
+            npInitP.setMinValue(0);
             return rootView;
         }
 
         public static void onClickSavePlayer(){
 
-            String name = editText.getText().toString();
-            int init = npInit.getValue();
+            String name = editTextP.getText().toString();
+            int init = npInitP.getValue();
 
             Character newCharacter = new Character(name, init);
             file.addCharacter(newCharacter);
@@ -234,6 +233,10 @@ public class AddDialog extends ActionBarActivity implements ActionBar.TabListene
          * fragment.
          */
         private static final String ARG_SECTION_NUMBER = "section_number";
+
+        static EditText editTextM;
+        static NumberPicker npInitM;
+        static NumberPicker npCountM;
 
         /**
          * Returns a new instance of this fragment for the given section
@@ -259,24 +262,24 @@ public class AddDialog extends ActionBarActivity implements ActionBar.TabListene
             if (file == null)
                 file = new Serializer(rootView.getContext());
 
-            editText = (EditText) rootView.findViewById(R.id.etName);
+            editTextM = (EditText) rootView.findViewById(R.id.etNameM);
 
-            npInit = (NumberPicker) rootView.findViewById(R.id.npInit);
-            npInit.setMinValue(0);
-            npInit.setMaxValue(9);
+            npInitM = (NumberPicker) rootView.findViewById(R.id.npInitM);
+            npInitM.setMinValue(0);
+            npInitM.setMaxValue(9);
 
-            npCount = (NumberPicker) rootView.findViewById((R.id.npCount));
-            npCount.setMinValue(1);
-            npCount.setMaxValue(4);
+            npCountM = (NumberPicker) rootView.findViewById((R.id.npCount));
+            npCountM.setMinValue(1);
+            npCountM.setMaxValue(4);
 
             return rootView;
         }
 
         public static void onClickSaveMonster(){
 
-            String name = editText.getText().toString();
-            int init = npInit.getValue();
-            int count = npCount.getValue();
+            String name = editTextM.getText().toString();
+            int init = npInitM.getValue();
+            int count = npCountM.getValue();
 
             Character newCharacter = new Character(name, init, count);
             file.addCharacter(newCharacter);
